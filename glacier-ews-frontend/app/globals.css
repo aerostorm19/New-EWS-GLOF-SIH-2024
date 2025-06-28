@@ -1,0 +1,457 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --space-black: #0a0e1a;
+    --deep-void: #050810;
+    --carbon-steel: #1a1f2e;
+    --arc-blue: #00a8ff;
+    --stark-cyan: #00d4ff;
+    --reactor-blue: #0080ff;
+    --jarvis-blue: #4da6ff;
+    --iron-gold: #ffa500;
+    --stark-white: #e8f4fd;
+    --danger-red: #ff3333;
+    --warning-amber: #ffaa00;
+    --success-green: #00ff88;
+    --hud-overlay: rgba(0, 168, 255, 0.1);
+
+    --background: var(--space-black);
+    --foreground: 210 40% 98%;
+    --card: var(--carbon-steel);
+    --card-foreground: 210 40% 98%;
+    --primary: var(--arc-blue);
+    --primary-foreground: var(--space-black);
+    --secondary: var(--carbon-steel);
+    --secondary-foreground: 210 40% 98%;
+    --muted: var(--deep-void);
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: var(--carbon-steel);
+    --accent-foreground: 210 40% 98%;
+    --destructive: var(--danger-red);
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: var(--arc-blue);
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    background: radial-gradient(circle at 20% 80%, rgba(0, 168, 255, 0.15) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 40% 40%, rgba(77, 166, 255, 0.08) 0%, transparent 50%),
+      linear-gradient(135deg, #0a0e1a 0%, #050810 100%);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Enhanced Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--deep-void);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(45deg, var(--arc-blue), var(--stark-cyan));
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(0, 168, 255, 0.5);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(45deg, var(--stark-cyan), var(--jarvis-blue));
+  }
+}
+
+@layer components {
+  /* Arc Reactor Effects */
+  .arc-reactor {
+    position: relative;
+    background: radial-gradient(circle, rgba(0, 168, 255, 0.3) 0%, rgba(0, 168, 255, 0.1) 40%, transparent 70%);
+    border: 2px solid var(--arc-blue);
+    border-radius: 50%;
+    box-shadow: 0 0 20px rgba(0, 168, 255, 0.6), inset 0 0 20px rgba(0, 168, 255, 0.2);
+    animation: arc-pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes arc-pulse {
+    0%,
+    100% {
+      box-shadow: 0 0 20px rgba(0, 168, 255, 0.6), inset 0 0 20px rgba(0, 168, 255, 0.2);
+      transform: scale(1);
+    }
+    50% {
+      box-shadow: 0 0 30px rgba(0, 168, 255, 0.8), inset 0 0 30px rgba(0, 168, 255, 0.4);
+      transform: scale(1.05);
+    }
+  }
+
+  /* JARVIS Interface Cards */
+  .jarvis-panel {
+    background: rgba(26, 31, 46, 0.8);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(0, 168, 255, 0.3);
+    border-radius: 8px;
+    box-shadow: 0 8px 32px rgba(0, 168, 255, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .jarvis-panel::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 168, 255, 0.1), transparent);
+    transition: left 0.8s ease;
+  }
+
+  .jarvis-panel:hover::before {
+    left: 100%;
+  }
+
+  /* HUD Grid System */
+  .hud-grid {
+    background-image: linear-gradient(rgba(0, 168, 255, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 168, 255, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+    animation: hud-scan 8s ease-in-out infinite;
+  }
+
+  @keyframes hud-scan {
+    0%,
+    100% {
+      opacity: 0.3;
+    }
+    50% {
+      opacity: 0.6;
+    }
+  }
+
+  /* Arc Reactor Glow */
+  .reactor-glow {
+    box-shadow: 0 0 20px rgba(0, 168, 255, 0.4), 0 0 40px rgba(0, 168, 255, 0.2), 0 0 60px rgba(0, 168, 255, 0.1);
+    animation: reactor-pulse 3s ease-in-out infinite;
+  }
+
+  @keyframes reactor-pulse {
+    0%,
+    100% {
+      box-shadow: 0 0 20px rgba(0, 168, 255, 0.4), 0 0 40px rgba(0, 168, 255, 0.2), 0 0 60px rgba(0, 168, 255, 0.1);
+    }
+    50% {
+      box-shadow: 0 0 30px rgba(0, 168, 255, 0.6), 0 0 60px rgba(0, 168, 255, 0.4), 0 0 90px rgba(0, 168, 255, 0.2);
+    }
+  }
+
+  /* JARVIS Text Effects */
+  .jarvis-text {
+    background: linear-gradient(45deg, var(--arc-blue), var(--stark-cyan), var(--jarvis-blue));
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: jarvis-shift 3s ease-in-out infinite;
+    font-family: "Orbitron", monospace;
+    font-weight: 700;
+    letter-spacing: 2px;
+  }
+
+  @keyframes jarvis-shift {
+    0%,
+    100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  /* Iron Man Button */
+  .stark-button {
+    position: relative;
+    background: linear-gradient(135deg, rgba(0, 168, 255, 0.1), rgba(77, 166, 255, 0.1));
+    border: 1px solid rgba(0, 168, 255, 0.4);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    overflow: hidden;
+    font-family: "Orbitron", monospace;
+    font-weight: 600;
+    letter-spacing: 1px;
+  }
+
+  .stark-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 168, 255, 0.3), transparent);
+    transition: left 0.6s ease;
+  }
+
+  .stark-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(0, 168, 255, 0.4);
+    border-color: var(--arc-blue);
+    background: linear-gradient(135deg, rgba(0, 168, 255, 0.2), rgba(77, 166, 255, 0.2));
+  }
+
+  .stark-button:hover::before {
+    left: 100%;
+  }
+
+  /* HUD Overlay */
+  .hud-overlay {
+    position: relative;
+  }
+
+  .hud-overlay::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        0deg,
+        transparent 24%,
+        rgba(0, 168, 255, 0.03) 25%,
+        rgba(0, 168, 255, 0.03) 26%,
+        transparent 27%,
+        transparent 74%,
+        rgba(0, 168, 255, 0.03) 75%,
+        rgba(0, 168, 255, 0.03) 76%,
+        transparent 77%,
+        transparent
+      ),
+      linear-gradient(
+        90deg,
+        transparent 24%,
+        rgba(0, 168, 255, 0.03) 25%,
+        rgba(0, 168, 255, 0.03) 26%,
+        transparent 27%,
+        transparent 74%,
+        rgba(0, 168, 255, 0.03) 75%,
+        rgba(0, 168, 255, 0.03) 76%,
+        transparent 77%,
+        transparent
+      );
+    background-size: 20px 20px;
+    pointer-events: none;
+    animation: hud-flicker 4s ease-in-out infinite;
+  }
+
+  @keyframes hud-flicker {
+    0%,
+    100% {
+      opacity: 0.5;
+    }
+    50% {
+      opacity: 0.8;
+    }
+  }
+
+  /* Data Stream */
+  .data-stream {
+    background: linear-gradient(90deg, transparent, var(--arc-blue), transparent);
+    height: 2px;
+    animation: data-flow 2s linear infinite;
+  }
+
+  @keyframes data-flow {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+
+  /* Arc Progress */
+  .arc-progress {
+    position: relative;
+    width: 120px;
+    height: 120px;
+  }
+
+  .arc-progress svg {
+    transform: rotate(-90deg);
+  }
+
+  .arc-progress circle {
+    fill: none;
+    stroke-width: 8;
+    stroke-linecap: round;
+  }
+
+  .arc-progress .bg-circle {
+    stroke: rgba(0, 168, 255, 0.1);
+  }
+
+  .arc-progress .progress-circle {
+    stroke: url(#arcGradient);
+    stroke-dasharray: 314;
+    stroke-dashoffset: 314;
+    animation: arc-draw 2s ease-out forwards;
+    filter: drop-shadow(0 0 10px rgba(0, 168, 255, 0.6));
+  }
+
+  @keyframes arc-draw {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  /* JARVIS Animations */
+  .jarvis-slide-in {
+    animation: jarvis-slide-in 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  @keyframes jarvis-slide-in {
+    0% {
+      opacity: 0;
+      transform: translateY(30px) scale(0.95);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  .jarvis-fade-in {
+    animation: jarvis-fade-in 1s ease-out;
+  }
+
+  @keyframes jarvis-fade-in {
+    0% {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  /* Mission Control Layout */
+  .mission-control {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  /* Technical Readouts */
+  .tech-readout {
+    font-family: "Orbitron", monospace;
+    font-weight: 400;
+    letter-spacing: 1px;
+    color: var(--stark-cyan);
+    text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+  }
+
+  /* Status Indicators */
+  .status-online {
+    color: var(--success-green);
+    text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+  }
+
+  .status-warning {
+    color: var(--warning-amber);
+    text-shadow: 0 0 10px rgba(255, 170, 0, 0.5);
+  }
+
+  .status-critical {
+    color: var(--danger-red);
+    text-shadow: 0 0 10px rgba(255, 51, 51, 0.5);
+  }
+
+  /* Utility Classes */
+  .text-arc {
+    color: var(--arc-blue);
+  }
+  .text-stark {
+    color: var(--stark-cyan);
+  }
+  .text-reactor {
+    color: var(--reactor-blue);
+  }
+  .text-jarvis {
+    color: var(--jarvis-blue);
+  }
+  .text-iron {
+    color: var(--iron-gold);
+  }
+  .text-stark-white {
+    color: var(--stark-white);
+  }
+
+  .bg-arc {
+    background-color: var(--arc-blue);
+  }
+  .bg-stark {
+    background-color: var(--stark-cyan);
+  }
+  .bg-reactor {
+    background-color: var(--reactor-blue);
+  }
+  .bg-jarvis {
+    background-color: var(--jarvis-blue);
+  }
+  .bg-iron {
+    background-color: var(--iron-gold);
+  }
+
+  .border-arc {
+    border-color: var(--arc-blue);
+  }
+  .border-stark {
+    border-color: var(--stark-cyan);
+  }
+  .border-reactor {
+    border-color: var(--reactor-blue);
+  }
+  .border-jarvis {
+    border-color: var(--jarvis-blue);
+  }
+  .border-iron {
+    border-color: var(--iron-gold);
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .jarvis-panel {
+      backdrop-filter: blur(10px);
+    }
+
+    .mission-control {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* High Performance Mode */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
