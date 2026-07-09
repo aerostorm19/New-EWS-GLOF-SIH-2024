@@ -146,4 +146,7 @@ See the [LICENSE](./LICENSE) file for full details.
 **Abhijit Rai**  
 Email: [abhijit.airosys@gmail.com](mailto:abhijit.airosys@gmail.com)  
 GitHub: [@aerostorm19](https://github.com/aerostorm19)
+**Gaurav Kumar Singh**
+Email: [kumargaurav4108@gmail.com](mailto:kumargaurav4108@gmail.com)
+Github: [@Gaurav20112003](https://github.com/Gaurav20112003)
 
